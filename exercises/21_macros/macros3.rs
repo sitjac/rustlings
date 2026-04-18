@@ -1,5 +1,6 @@
-// TODO: Fix the compiler error without taking the macro definition out of this
-// module.
+// macro in a different module cannot be used without importing it.
+// Use the `macro_use` attribute to import the macro from the `macros` module.
+#[macro_use]
 mod macros {
     macro_rules! my_macro {
         () => {

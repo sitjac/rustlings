@@ -10,10 +10,15 @@ fn factorial(num: u64) -> u64 {
     // - additional variables
     // For an extra challenge, don't use:
     // - recursion
+    (2..=num).product()
 }
 
 fn main() {
     // You can optionally experiment here.
+    println!("Factorial of 0: {}", factorial(0));
+    println!("Factorial of 1: {}", factorial(1));
+    println!("Factorial of 2: {}", factorial(2));
+    println!("Factorial of 4: {}", factorial(4));
 }
 
 #[cfg(test)]

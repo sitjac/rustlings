@@ -17,3 +17,6 @@ Cargo.lock
 
 # Ignore file for editors like Helix
 .ignore
+
+# IDE
+.vscode/
