@@ -4,17 +4,31 @@
 // construct to `Option` that can be used to express error conditions. Change
 // the function signature and body to return `Result<String, String>` instead
 // of `Option<String>`.
-fn generate_nametag_text(name: String) -> Option<String> {
+fn generate_nametag_text(name: String) -> Result<String, String> {
     if name.is_empty() {
         // Empty names aren't allowed
-        None
+        Err("Empty names aren't allowed".to_string())
     } else {
-        Some(format!("Hi! My name is {name}"))
+        Ok(format!("Hi! My name is {name}"))
     }
 }
 
 fn main() {
     // You can optionally experiment here.
+    use std::io::{self, Write};
+    while let Ok(_) = io::stdout().flush() {
+        let mut name = String::new();
+        println!("Enter your name:");
+        if io::stdin().read_line(&mut name).is_ok() {
+            let name = name.trim().to_string();
+            match generate_nametag_text(name) {
+                Ok(nametag) => println!("{}", nametag),
+                Err(e) => println!("Error: {}", e),
+            }
+        } else {
+            println!("Failed to read input. Please try again.");
+        }
+    }
 }
 
 #[cfg(test)]
